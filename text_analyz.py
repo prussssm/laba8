@@ -37,6 +37,17 @@ class TextAnalyzer:
         for char, freq in result.items():
             print(f"'{char}': {freq:.4f}")
 
+    def full_analysis(self):
+        """Полный анализ: ввод данных, генерация и вывод результата."""
+        choice = input("Вы хотите (1) ввести текст вручную или (2) сгенерировать текст? ")
+        if choice == '1':
+            self.input_data()
+        elif choice == '2':
+            self.generate_data()
+        
+        result = self.analyze_data()
+        self.output_result(result)
+
 class Menu:
     def __init__(self):
         self.analyzer = TextAnalyzer()
@@ -44,22 +55,25 @@ class Menu:
     def display_menu(self):
         """Основное меню приложения с обработкой ошибок."""
         while True:
-            print("\n1) Ввод данных вручную")
-            print("2) Генерация данных")
-            print("3) Выполнение алгоритма")
-            print("4) Вывод результата")
+            print("\n1) Полный анализ текста")
+            print("2) Ввод данных вручную")
+            print("3) Генерация данных")
+            print("4) Выполнение алгоритма")
+            print("5) Вывод результата")
             print("0) Завершение работы")
 
             choice = input("Выберите пункт меню: ")
 
             if choice == '1':
-                self.analyzer.input_data()
+                self.analyzer.full_analysis()  # Вызов полного анализа
             elif choice == '2':
-                self.analyzer.generate_data()
+                self.analyzer.input_data()
             elif choice == '3':
+                self.analyzer.generate_data()
+            elif choice == '4':
                 result = self.analyzer.analyze_data()
                 print("Алгоритм выполнен.")
-            elif choice == '4':
+            elif choice == '5':
                 self.analyzer.output_result(result)
             elif choice == '0':
                 print("Завершение работы программы.")
